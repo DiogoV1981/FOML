@@ -1,0 +1,6 @@
+{
+    "model_name": "Rforest",
+    "model_version": 1,
+    "tracking_uri": "http://localhost:5000",
+    "port": 5002
+}

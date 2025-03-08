@@ -1,0 +1,10 @@
+FROM python:3.11
+
+# Instalar as bibliotecas FastAPI e Uvicorn
+RUN pip install fastapi uvicorn
+
+# Copiar o arquivo app.py para o diretório de trabalho dentro do container
+COPY app.py /app/app.py
+
+# Manter o container em execução
+CMD ["tail", "-f", "/dev/null"]
