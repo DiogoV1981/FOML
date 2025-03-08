@@ -1,0 +1,35 @@
+name: CI/CD
+
+on:
+  push:
+    branches: 
+      - master
+    
+  pull_request:
+      - master
+
+jobs:
+  cicd:
+    runs.on: ubuntu-latest
+    steps:
+      - name: checkchout codigo
+        uses: actions/checkout@v4
+
+      - name: install docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: MLFLOW tracking server + service # main
+        uses: docker compose up -d --build
+
+      - name: instalar dependencias do conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: OML
+          environment-file: conda-yml
+
+      - name: Tests
+        run: conda run --no-capture-output --name OML pytest
+
+      - name:  # gitactions markeplace - docker login  
+
+      
